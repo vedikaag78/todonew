@@ -1,3 +1,9 @@
+<!--
+
+
+
+
+
 <template>
 
 
@@ -10,9 +16,10 @@
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav">
-            <a href="#" class="nav-item nav-link active">Home</a>
-            <a href="#" class="nav-item nav-link">Calender</a>
-            <a href="#" class="nav-item nav-link">New</a>
+          <router-link  to="/" class="nav-item nav-link active">  Home </router-link>
+           <router-link  to="/calender" class="nav-item nav-link ">  Calender</router-link>
+            <router-link  to="/newtodo" class="nav-item nav-link ">  New </router-link>
+           
         </div>
         <form class="form-inline ml-auto">
             <input type="text" class="form-control mr-sm-2" placeholder="Search Task">
@@ -34,8 +41,9 @@
      <h1 class="text-head mt-5">MY TO-DO app</h1>
    
   
-  
+ 
    <!--input-->
+    <!--
    <div class="form-group"> 
     <input v-model="task" class="form-control" placeholder="enter task"/>
     <button @click="submittask" type="submit" class="btn btn-primary">Submit</button>
@@ -51,7 +59,7 @@
     </div>
   </div>
    <!--task display-->
-   
+   <!--
      <table class="table table-bordered mt-6" >
   <thead>
     <tr>
@@ -158,12 +166,12 @@ export default {
       ]
     }
   },
-
+ -->
  
 
 
 
-
+<!--
 
   methods:{
     submittask(){
@@ -231,10 +239,7 @@ export default {
   background-blend-mode: soft-light;
   margin-bottom: 5rem;
 }
-.container{
- background: #164b69;
- 
-}
+
 .form-group{
   display: grid;
   grid-template-columns: auto auto auto auto auto auto;
