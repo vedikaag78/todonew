@@ -1,8 +1,8 @@
 
 <template>
-  <v-app grey >
+  <v-app>
     <navbar />
-    <v-content class="mx-5">
+    <v-content >
      <router-view>
      </router-view>
     </v-content>
@@ -33,7 +33,8 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 0px;
+  background: rgb(201, 197, 197);
 }
+
 </style>

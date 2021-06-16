@@ -6,9 +6,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import About from '../views/About.vue'
+import Calender from '../views/Calender.vue'
 import Home from '../views/Home.vue'
 import Dashboard from '../views/Dashboard.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -18,9 +19,9 @@ const routes = [
     component: Dashboard
   },
   {
-    path: '/about',
-    name: 'about',
-    component: About
+    path: '/calender',
+    name: 'calender',
+    component: Calender
   },
   {
     path: '/home',
