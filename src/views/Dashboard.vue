@@ -38,7 +38,7 @@
             :key="task['.key']"
             :cols="task.flex"
             lg="3"
-            sm="12"
+            sm="6"
           >
           
             <v-card
