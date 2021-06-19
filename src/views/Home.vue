@@ -34,7 +34,7 @@
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
                   v-model="date"
-                  label="Picker in menu"
+                  label="date"
                   prepend-icon="mdi-calendar"
                   readonly
                   v-bind="attrs"
@@ -86,46 +86,30 @@
           </v-row>
 
           <v-card-actions>
-            <v-btn class="ma-2" outlined>
+            <v-btn class="mr-8 my-5" outlined>
               <v-container class="px-0" fluid>
                 <v-switch v-model="switch1"> </v-switch>
               </v-container>
               Remind Me
             </v-btn>
+             <v-menu offset-x  color="white my-5" cursor:pointer>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn color="blue-grey darken-2 white--text" v-bind="attrs" v-on="on">
+                  Category
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item v-for="item in items" :key="item.title" cursor:pointer>
+                  <v-list-item-title 
+                    v-model="category"
+                    @click="takeCat(item.title)"
+                    >{{ item.title }}</v-list-item-title
+                  >
+                </v-list-item>
+              </v-list>
+            </v-menu>
           </v-card-actions>
-          <v-card-text>
-            <v-layout row wrap class="pa-3">
-              <v-flex xs12 md3 class="pb-3">
-                <div class="pa-3 text-sm-h6">Category</div>
-              </v-flex>
-              <v-flex xs4 md3 class="pb-3">
-                <v-btn
-                  color="#F8BBD0"
-                  class="ma-2 md purple--text font-weight-bold"
-                >
-                  Home
-                </v-btn>
-              </v-flex>
-              <v-flex xs4 md3 class="pb-3">
-                <v-btn
-                  class="ma-2 brown--text font-weight-bold"
-                  color="#FFCCBC"
-                >
-                  Grocery
-                </v-btn>
-              </v-flex>
-              <v-flex xs4 md3 class="pb-3">
-                <v-btn
-                  color="#D1C4E9"
-                  class="ma-2 md font-weight-bold deeppurple--text"
-                >
-                  Business
-                </v-btn>
-              </v-flex>
-            </v-layout>
-          </v-card-text>
-
-          <v-card-actions>
+             <v-card-actions>
             <v-btn class="success mr-4" @click="submit()" :loading="loading">
               submit
             </v-btn>
@@ -150,7 +134,10 @@ export default {
       menu2: false,
       title: "",
       description: "",
+      cat: null,
       time: null,
+      item: Object,
+      items: [{ title: "grocery" }, { title: "home" }, { title: "business" }],
 
       nameRules: [
         (v) => !!v || "field is required",
@@ -163,13 +150,11 @@ export default {
       modal2: false,
     };
   },
-  //  computed:{
-  //  formatteddate(){
-  //   return this.date ? format(this.date, 'MMM DD YYYY') :''
-  //   }
-  //   },
-
   methods: {
+    takeCat(n) {
+      this.cat = n;
+    },
+
     submit() {
       if (this.$refs.form.validate()) {
         console.log(this.title, this.description);
@@ -179,7 +164,8 @@ export default {
           description: this.description,
           date: this.date,
           time: this.time,
-          status: "ongoing",
+          status: "to-do",
+          category: this.cat,
         };
         db.collection("tasks")
           .add(task)
@@ -188,6 +174,7 @@ export default {
             this.loading = false;
             this.dialog = false;
             this.$emit("taskAdded");
+            this.$router.push("/");
           });
       }
     },
