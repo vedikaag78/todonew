@@ -86,13 +86,13 @@
           </v-row>
 
           <v-card-actions>
-            <v-btn class="mr-8 my-5" outlined>
+            <!-- <v-btn class="mr-8 my-5" outlined>
               <v-container class="px-0" fluid>
                 <v-switch v-model="switch1"> </v-switch>
               </v-container>
               Remind Me
-            </v-btn>
-             <v-menu offset-x  color="white my-5" cursor:pointer>
+            </v-btn> -->
+             <v-menu offset-x  color="white my-7" cursor:pointer>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn color="blue-grey darken-2 white--text" v-bind="attrs" v-on="on">
                   Category

@@ -84,7 +84,7 @@
         items : [
           { title: 'Dashboard', icon: 'mdi-database' , route: '/' },
           { title: 'Create', icon: 'mdi-pencil' , route: '/home'},
-          { title: 'Calender', icon: 'mdi-help-box' , route: '/calender' },
+         
         ],
         right: null,
         snackbar: false,

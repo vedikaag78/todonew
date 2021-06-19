@@ -2,7 +2,7 @@
   <div class="dashboard">
     <h3 class="mt-4 text-uppercase font-weight-bold">my tasks</h3>
 
-    <v-container class="my-6">
+    <v-container class="my-6" fluid>
     
       <!-- <v-menu  transition="slide-y-transition" bottom>
         <template v-slot:activator="{ on, attrs }">
@@ -31,14 +31,15 @@
       <br />
 
       <template>
-        <v-row no-gutters>
+        <v-row no-gutters >
           <v-col
             elevation="5"
             v-for="(task, index) in tasks"
             :key="task['.key']"
             :cols="task.flex"
             lg="3"
-            sm="6"
+            sm="12"
+            
           >
           
             <v-card
