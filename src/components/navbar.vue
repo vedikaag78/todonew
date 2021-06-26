@@ -31,7 +31,7 @@
           <v-avatar size="100">
             <img src="/1.jpg" alt="sorry">
           </v-avatar>
-          <p class="subheading ma-2">  Vedika </p>
+          <p class="subheading ma-2">  USER </p>
           <p class="subheading ">  </p>
            <p class="subheading" >  
              Welcome

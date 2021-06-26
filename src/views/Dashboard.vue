@@ -4,7 +4,7 @@
 
     <v-container class="my-6" fluid>
     
-      <!-- <v-menu  transition="slide-y-transition" bottom>
+       <v-menu  transition="slide-y-transition" bottom>
         <template v-slot:activator="{ on, attrs }">
           <v-btn
             color="blue-grey"
@@ -24,7 +24,7 @@
             <v-list-item-title >By title</v-list-item-title>
           </v-list-item>
         </v-list> 
-      </v-menu> -->
+      </v-menu> 
 
       <br />
       <br />
@@ -198,20 +198,12 @@ export default {
   methods: {
      sortBy(title){
      this.tasks.sort((a,b) => a[title] < b[title] ? -1 : 1)
-     db.collection("tasks").doc(title).orderByValue('title');
+    //  db.collection("tasks").doc(title).orderByValue('title');
       },
       
 
-    SortBy(Date) {
-      this.tasks.sort((a, b) => {
-        if (Date.parse(a.date) > Date.parse(b.date)) {
-          return 1;
-        } else if (Date.parse(a.date) < Date.parse(b.date)) {
-          return -1;
-        } else {
-          return 0;
-        }
-      });
+    SortBy(date) {
+      this.tasks.sort((a,b) => a[date] < b[date] ? -1 : 1)
     },
     deletetask(index) {
       db.collection("tasks").doc(index).delete();

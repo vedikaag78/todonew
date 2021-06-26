@@ -3,6 +3,7 @@ import 'firebase/firestore'
 require('dotenv').config()
 
 
+
 const firebaseConfig = {
     apiKey:process.env.VUE_APP_apiKey ,
     authDomain: process.env.VUE_APP_authDomain   ,
@@ -19,5 +20,14 @@ const firebaseApp = firebase.initializeApp(firebaseConfig);
 const db = firebaseApp.firestore();
 
 export default db
+const messaging = firebase.messaging()
+Notification.requestPermission()
+.then(function(){
+    console.log('Have permission');
+    
+  return messaging.getToken()
+}).then(token => {
+    console.log(token);
+})
 
 
