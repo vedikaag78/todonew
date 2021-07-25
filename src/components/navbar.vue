@@ -2,18 +2,17 @@
  <nav>
   
     
-  <v-toolbar max-height="58px" flat app color="black">
-    <v-toolbar-side-icon class="black--text   mr-0"></v-toolbar-side-icon>
-     <v-btn small   @click="drawer= !drawer" class="mx-4 "  justify-start >
+  <v-toolbar max-height="58px" flat app color="black" class="mb-0">
+    <v-toolbar-side-icon class="mr-0"></v-toolbar-side-icon>
+     <v-btn small dark @click="drawer= !drawer" class="mx-3 bgcol "  justify-start >
       <v-icon
-       
-      color="black lighten-4 "
+        color="white" aria-hidden="true"
       >
        fa fa-bars 
       </v-icon> 
        </v-btn>   
        
-    <v-toolbar-title class="text-uppercase white--text ml-5" >
+    <v-toolbar-title class="text-uppercase white--text ml-3" >
         My
         <span font-weight-light> Todo</span>
     </v-toolbar-title>
@@ -96,6 +95,9 @@
 <style>
 .nav{
   position: relative;
+}
+.bgcol{
+  background-color: black;
 }
 
 </style>

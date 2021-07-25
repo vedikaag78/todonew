@@ -1,8 +1,33 @@
 <template>
-  <div class="dashboard">
-    <h3 class="mt-4 text-uppercase font-weight-bold">my tasks</h3>
+  <div class="dashboard mt-0 ">
+    <h3 class="mytask mt-0 text-uppercase font-weight-bold">my tasks</h3>
 
     <v-container class="my-6" fluid>
+
+        <v-menu  transition="slide-y-transition" bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            color="blue-grey"
+            class="ma-2 white--text float-right"
+            dark
+            v-bind="attrs"
+            v-on="on"
+          >
+            Filter
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item right @click="filterBy('grocery')">
+            <v-list-item-title>Grocery</v-list-item-title>
+          </v-list-item>
+          <v-list-item right @click="filterBy('business')" v-on="on">
+            <v-list-item-title >Business</v-list-item-title>
+          </v-list-item>
+           <v-list-item right @click="filterBy('home')" v-on="on">
+            <v-list-item-title >Home</v-list-item-title>
+          </v-list-item>
+        </v-list> 
+      </v-menu> 
     
        <v-menu  transition="slide-y-transition" bottom>
         <template v-slot:activator="{ on, attrs }">
@@ -165,22 +190,20 @@ export default {
     };
   },
   mounted() {
+  
     db.collection("tasks").onSnapshot((res) => {
       const changes = res.docChanges();
       changes.forEach((change) => {
         let task = change.doc.data();
-        let id = task.id;
+        // let id = task.id;
+        console.log(task)
         if (change.type === "added") {
           this.tasks.push({
             ...change.doc.data(),
             id: change.doc.id,
           });
         }
-        if (change.type === "removed") {
-          console.log("removed");
-          let index = this.tasks.findIndex((task) => task.id === id);
-          this.tasks.splice(index, 1);
-        }
+      
         if (change.type === "modified") {
           this.tasks.push({
             ...change.doc.data(),
@@ -196,7 +219,17 @@ export default {
   },
 
   methods: {
+
+     filterBy(category){
+      let temp_task = this.tasks ;
+      // console.log(temp_task);
+      temp_task.filter((task)=>{return task.category ==  category.toString()});
+      // console.log(temp_task);
+      return temp_task;
+
+    },
      sortBy(title){
+       console.log(this.tasks);
      this.tasks.sort((a,b) => a[title] < b[title] ? -1 : 1)
     //  db.collection("tasks").doc(title).orderByValue('title');
       },
@@ -205,8 +238,10 @@ export default {
     SortBy(date) {
       this.tasks.sort((a,b) => a[date] < b[date] ? -1 : 1)
     },
-    deletetask(index) {
-      db.collection("tasks").doc(index).delete();
+    deletetask(id) {
+      db.collection("tasks").doc(id).delete();
+       let index = this.tasks.findIndex((task) => task.id === id);
+       this.tasks.splice(index, 1);
     },
     editTask(id) {
       let route = "/edit/" + id;
@@ -219,9 +254,18 @@ export default {
       this.tasks[index].status = this.presentstatuses[updatedindex];
     },
   },
+
 };
 </script>
 <style >
+.dashboard{
+  height: 100vh;
+  background-image: linear-gradient(to bottom, whitesmoke , #acb3f1  );
+  overflow-y: scroll;
+}
+.mytask{
+  transform:translateY(40px);
+}
 .float-left {
   float: left;
   width: 50%;
